@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Hello world</title>
+   </head>
+   
+   <script src = "/socket.io/socket.io.js"></script>
+   <script>
+      var socket = io();
+      var user;
+      var room =0;
+
+      function setUsername() {
+         room = room+1;
+         var userName=document.getElementById('name').value;
+         if(userName && userName != '')
+         {  
+            socket.emit('subscribe', room,document.getElementById('name').value);
+         }
+         
+      };
+      
+      socket.on('userSet', function(data) {
+         user = data.username;
+         
+         document.body.innerHTML = '<input type = "text" id = "message">\
+         <button type = "button" name = "button" onclick = "sendMessage('+room+')">Send</button>\
+         <div id = "message-container"></div>';
+      });
+
+      function sendMessage(conversation_id) {
+         var msg = document.getElementById('message').value;
+         if(msg) {
+            socket.emit('send message', {
+               user: user,
+               room: conversation_id,
+               message: msg
+            });
+         }
+         document.getElementById('message').value='';
+      } 
+
+      socket.on('conversation private post', function(data) {
+         document.getElementById('message-container').innerHTML += '<div><b>' + 
+            data.user + '</b>: ' + data.message + '</div>'
+      });
+
+   </script>
+   
+   <body>
+      <div id = "error-container"></div>
+      <input id = "name" type = "text" name = "name" value = "" 
+         placeholder = "Enter your name!">
+      <button type = "button" name = "button" onclick = "setUsername()">
+         Let me chat!
+      </button>
+   </body>
+</html>

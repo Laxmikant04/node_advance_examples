@@ -1,0 +1,14 @@
+<script src="/socket.io/socket.io.js"></script>
+
+<h4>Hello</h4>
+<script type="text/javascript">
+    var socket = io.connect('http://172.16.123.174:9090/');	
+
+    socket.on('connect', function(){
+    });
+
+    socket.on('message', function (data) {
+        console.log(data.count);
+    });
+
+</script>
