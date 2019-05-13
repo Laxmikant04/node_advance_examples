@@ -1,0 +1,32 @@
+
+How can you Implement Visitor Counter in Node.js
+How can you achieve Scale and Concurrency in Node.js - using Cluster and async programming
+
+// question on event loop cycle -start
+What is Event loop in Node.js work? And How does it work?
+Explain Event-Driven Programming in Node.js
+// question on event loop cycle -end
+
+What is the use of DNS module in Node.js -- ?
+Explain Process.nextTick() function in Node.js.
+
+Ans:- Use setImmediate if you want to queue the function behind whatever I/O event callbacks that are already in the event queue.
+Use process.nextTick to effectively queue the function at the head of the event queue so that it executes immediately after the current function completes
+
+What is crypto in Node.js? How do you cipher the secured information in Node.js
+What is Tracing in Node.js?
+
+
+
+What is the difference between readFile vs createReadStream in Node.js
+Explain “request” module in node.js.
+What is the passport in Node.js
+
+
+
+
+
+https://medium.com/@vigowebs/frequently-asked-node-js-interview-questions-and-answers-b74fa1f20678
+https://www.c-sharpcorner.com/article/top-50-node-js-interview-questions-and-answers/
+
+
